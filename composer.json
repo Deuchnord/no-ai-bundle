@@ -1,0 +1,41 @@
+{
+    "name": "deuchnord/no-ai-bundle",
+    "description": "Ban AI crawlers from visiting your Symfony website or application",
+    "type": "symfony-bundle",
+    "license": "EUPL-1.2",
+    "autoload": {
+        "psr-4": {
+            "Deuchnord\\NoAiBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Deuchnord\\NoAiBundle\\Test\\": "tests/"
+        }
+    },
+
+    "authors": [
+        {
+            "name": "Deuchnord",
+            "email": "jerome@deuchnord.fr"
+        }
+    ],
+    "require": {
+        "php": "8.3.*|8.4.*",
+        "symfony/framework-bundle": "^6.4|^7.0",
+        "symfony/event-dispatcher": "^7.3"
+    },
+    "require-dev": {
+      "phpunit/phpunit": "^12.3",
+      "phpstan/phpstan": "^2.1",
+      "friendsofphp/php-cs-fixer": "3.85.1",
+      "symfony/polyfill-mbstring": "^1.32",
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan-symfony": "^2.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}

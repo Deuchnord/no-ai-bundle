@@ -1,0 +1,34 @@
+name: Linters
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  phpstan:
+    runs-on: ubuntu-latest
+    name: "PHPStan"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          tools: composer
+
+      - run: composer install
+      - run: vendor/bin/phpstan analyze
+
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    name: "PHP-CS-Fixer"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          tools: composer
+
+      - run: composer install
+      - run: vendor/bin/php-cs-fixer fix --dry-run --diff
