@@ -14,7 +14,7 @@ namespace Deuchnord\NoAiBundle;
 
 use Symfony\Component\HttpFoundation\Request;
 
-final class LlmDetection
+final class LlmDetection implements LlmDetectionInterface
 {
     // Source: https://momenticmarketing.com/blog/ai-search-crawlers-bots
     public const array CRAWLER_USER_AGENTS = [

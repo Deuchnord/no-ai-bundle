@@ -79,7 +79,7 @@ If you don't, then you need a more aggressive way to block them.
 
 ### Can I allow some crawlers to visit my website?
 
-Such a feature is not planned. If you really want it, the best solution would be to decorate the `Deuchnord\NoAiBundle\LlmDetection` service.
+Such a feature is not planned. If you really want it, the best solution would be to [decorate](https://symfony.com/doc/current/service_container/service_decoration.html) the `Deuchnord\NoAiBundle\LlmDetectionInterface` service.
 
 ### I am the CEO of a generative AI company and I hate this bundle
 

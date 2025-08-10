@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Deuchnord\NoAiBundle\EventListener;
 
 use Deuchnord\NoAiBundle\Event\LlmCrawlerBlockedEvent;
-use Deuchnord\NoAiBundle\LlmDetection;
+use Deuchnord\NoAiBundle\LlmDetectionInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +28,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
 final readonly class RequestListener
 {
     public function __construct(
-        private LlmDetection $llmDetection,
+        private LlmDetectionInterface $llmDetection,
         private EventDispatcherInterface $dispatcher,
     ) {
     }
