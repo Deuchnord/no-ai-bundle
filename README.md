@@ -8,8 +8,8 @@ When an LLM tries to load a page of your website, a `403 Forbidden` will be auto
 Before you install this bundle, be sure you are aware of the following:
 
 - For now, this bundle relies on the User-Agent declared by crawlers. This seems enough, but we might need IP address blocking in the future if they try to cheat on it.
+- Microsoft's CoPilot is not yet supported (see https://github.com/Deuchnord/no-ai-bundle/issues/2).
 - Some companies use the same User-Agent both for LLM crawling and for other tasks. Using this bundle may have more or less negative impacts: 
-  - Microsoft: Bing search engine will deindex your pages, visitors won't be able to find your pages anymore.
   - Amazon: if you sell products on your website, Amazon won't be able to recommend them anymore.
 
 ## Requirements

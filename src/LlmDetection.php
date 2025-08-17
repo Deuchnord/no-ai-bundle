@@ -22,7 +22,6 @@ final class LlmDetection implements LlmDetectionInterface
         [LlmCrawler::ANTHROPIC, ['anthropic-ai', 'ClaudeBot', 'claude-web']],
         [LlmCrawler::PERPLEXITY, ['PerplexityBot', 'Perplexity-User']],
         [LlmCrawler::GOOGLE, ['Google-Extended']],
-        [LlmCrawler::MICROSOFT, ['BingBot']], // See caveats in README.md
         [LlmCrawler::AMAZON, ['Amazonbot']], // See caveats in README.md
         [LlmCrawler::APPLE, ['Applebot-Extended']],
         [LlmCrawler::BYTEDANCE, ['Bytespider']],
