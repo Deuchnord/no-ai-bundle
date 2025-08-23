@@ -1,5 +1,6 @@
 parameters:
     level: 10
+    phpVersion: 80200  # Check against PHP 8.2 compatibility.
     paths:
         - src
         - tests
