@@ -30,20 +30,49 @@ final class LlmDetection implements LlmDetectionInterface
         [LlmCrawler::ALLEN_INSTITUTE, ['AI2Bot']],
     ];
 
+    public const CRAWLER_IP_ADDRESS_RANGES = [
+        [LlmCrawler::DIFFBOT, [
+            ['64.62.128.0', '64.62.255.255'],
+            ['64.71.128.0', '64.72.0.0'],
+        ]],
+    ];
+
     public function getLlmCrawler(Request $request): ?LlmCrawler
     {
-        return $this->findByLlmUserAgent($request->headers->get('User-Agent'));
+        return $this->findByLlmUserAgent($request->headers->get('User-Agent'), $request->getClientIp());
     }
 
-    private function findByLlmUserAgent(?string $userAgent): ?LlmCrawler
+    private function findByLlmUserAgent(?string $userAgent, ?string $ipAddress): ?LlmCrawler
     {
         if (null === $userAgent) {
             return null;
         }
 
+        if ($crawler = $this->findCrawlerByUserAgent($userAgent)) {
+            return $crawler;
+        }
+
+        return $ipAddress ? $this->findCrawlerByIpAddress($ipAddress) : null;
+    }
+
+    private function findCrawlerByUserAgent(string $userAgent): ?LlmCrawler
+    {
         foreach (self::CRAWLER_USER_AGENTS as [$crawler, $crawlerUserAgents]) {
             foreach ($crawlerUserAgents as $crawlerUserAgent) {
                 if (str_contains(strtoupper($userAgent), strtoupper($crawlerUserAgent))) {
+                    return $crawler;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    private function findCrawlerByIpAddress(string $ipAddress): ?LlmCrawler
+    {
+        foreach (self::CRAWLER_IP_ADDRESS_RANGES as [$crawler, $crawlerIpRanges]) {
+            foreach ($crawlerIpRanges as [$crawlerIpRangeStart, $crawlerIpRangeEnd]) {
+                if (ip2long($ipAddress) >= ip2long($crawlerIpRangeStart) && ip2long($ipAddress) <= ip2long($crawlerIpRangeEnd)) {
                     return $crawler;
                 }
             }

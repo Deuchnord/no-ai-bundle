@@ -18,11 +18,15 @@ enum LlmCrawler
     case ANTHROPIC;
     case PERPLEXITY;
     case GOOGLE;
+
+    /** @deprecated Microsoft uses Diffbot's crawlers. Use {@see self::DIFFBOT} instead. */
     case MICROSOFT;
+
     case AMAZON;
     case APPLE;
     case BYTEDANCE;
     case DUCKDUCKGO;
     case COHERE;
     case ALLEN_INSTITUTE;
+    case DIFFBOT;
 }
