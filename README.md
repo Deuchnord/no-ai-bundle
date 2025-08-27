@@ -1,5 +1,7 @@
 # No AI Bundle
 
+[![Coverage Status](https://coveralls.io/repos/github/Deuchnord/no-ai-bundle/badge.svg)](https://coveralls.io/github/Deuchnord/no-ai-bundle)
+
 A simple Symfony bundle that blocks large language model (LLM) crawlers.
 When an LLM tries to load a page of your website, a `403 Forbidden` will be automatically returned before your code has even run, saving resources on your server.
 

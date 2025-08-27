@@ -24,6 +24,24 @@ jobs:
         with:
           php-version: "${{ matrix.php }}"
           tools: composer
+          coverage: xdebug
 
       - run: composer install
-      - run: vendor/bin/phpunit tests/
+
+      - run: vendor/bin/phpunit --coverage-clover=coverage.xml --coverage-filter=src tests/
+
+      - uses: coverallsapp/github-action@v2
+        with:
+          files: coverage.xml
+          flag-name: php-${{ matrix.php }}
+          parallel: true
+
+  code-coverage:
+    name: Code coverage
+    needs: unit-tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true

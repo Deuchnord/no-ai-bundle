@@ -18,7 +18,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class LlmDetectionTest extends TestCase
+final class LlmDetectionTest extends TestCase
 {
     /* @phpstan-ignore missingType.iterableValue */
     public static function crawlerProviderUserAgents(): iterable
