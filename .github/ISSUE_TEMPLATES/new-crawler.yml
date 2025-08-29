@@ -1,0 +1,38 @@
+name: New crawler
+title: "[LLM Crawler] "
+description: Report a crawler that is currently not supported by the bundle.
+labels:
+  - enhancement
+  - crawler
+body:
+  - type: input
+    id: input-0
+    attributes:
+      label: Name of the LLM
+      description: Enter here the commercial name of the LLM
+      placeholder: ChatGPT
+    validations:
+      required: true
+  - type: input
+    id: input-1
+    attributes:
+      label: Official website of the LLM
+      placeholder: https://chatgpt.com
+    validations:
+      required: true
+  - type: textarea
+    id: textarea-2
+    attributes:
+      label: User-Agents
+      description: If the crawler uses its own user-agents, list them here
+  - type: textarea
+    id: textarea-3
+    attributes:
+      label: IP addresses
+      description: If you could find specific IP addresses used by the crawler, list
+        them here
+  - type: textarea
+    id: textarea-4
+    attributes:
+      label: Anything else?
+      description: If you have any other information, provide them here
