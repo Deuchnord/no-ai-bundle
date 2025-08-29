@@ -1,0 +1,22 @@
+{
+    "name": "deuchnord/no-ai-bundle-honeypotr",
+    "description": "Honeypot to get information about crawlers. Not intended to be used in production.",
+    "type": "project",
+    "license": "EUPL-1.2",
+    "authors": [
+        {
+            "name": "Deuchnord",
+            "email": "jerome@deuchnord.fr"
+        }
+    ],
+    "require": {
+        "symfony/framework-bundle": "^7.3",
+        "symfony/runtime": "^7.3",
+        "deuchnord/no-ai-bundle": "dev-main"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}

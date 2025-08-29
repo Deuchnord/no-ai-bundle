@@ -1,0 +1,27 @@
+name: Report a bug with a crawler
+title: "[LLM Crawler] "
+description: Report bug with detection of a supported crawler.
+labels:
+  - bug
+  - crawler
+body:
+  - type: input
+    id: llm-name
+    attributes:
+      label: Name of the LLM
+      description: Enter here the commercial name of the LLM
+      placeholder: ChatGPT
+    validations:
+      required: true
+  - type: input
+    id: llm-website
+    attributes:
+      label: Official website of the LLM
+      placeholder: https://chatgpt.com
+    validations:
+      required: true
+  - type: textarea
+    id: bugreport
+    attributes:
+      label: What's going on?
+      description: "Explain here the problem you are facing (e.g.: the crawler is not blocked)."
