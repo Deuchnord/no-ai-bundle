@@ -17,7 +17,7 @@ Before you install this bundle, be sure you are aware of the following:
 
 To use this bundle, you will need to run:
 
-- PHP 8.3+
+- PHP 8.2+
 - Symfony 6.4+
 
 ## Installation
