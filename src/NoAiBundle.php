@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Deuchnord\NoAiBundle;
 
-use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
@@ -22,10 +21,9 @@ final class NoAiBundle extends AbstractBundle
 {
     public function configure(DefinitionConfigurator $definition): void
     {
-        /** @var ArrayNodeDefinition $root */
-        $root = $definition->rootNode();
-
-        $root->children()
+        // @phpstan-ignore-next-line
+        $definition->rootNode()
+            ->children()
             ->booleanNode('enabled')
                 ->info('Set this to false to not block LLM crawlers.')
                 ->defaultTrue()
