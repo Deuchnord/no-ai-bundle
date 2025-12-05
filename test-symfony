@@ -1,0 +1,53 @@
+#!/bin/bash
+
+function assert() {
+    if [ "$1" != "$2" ]; then
+        echo "Assertion failed: $1 != $2"
+        exit 2
+    fi
+}
+
+if [ "$SYMFONY_VERSION" == "" ]; then
+    echo "Missing SYMFONY_VERSION environment variable."
+    exit 1
+fi
+
+rm -rf testapp
+
+if [ "$GIT_BRANCH_NAME" == "" ]; then
+    GIT_BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)
+fi
+
+echo "Testing $GIT_BRANCH_NAME for Symfony $SYMFONY_VERSION"
+echo
+
+composer create-project symfony/skeleton:"${SYMFONY_VERSION}.x" testapp
+
+cd testapp
+composer require "deuchnord/no-ai-bundle:dev-$GIT_BRANCH_NAME"
+
+rm -rf vendor/deuchnord/no-ai-bundle/src testapp/vendor/deuchnord/no-ai-bundle/composer.json
+cp -r ../src vendor/deuchnord/no-ai-bundle/src
+cp ../composer.json vendor/deuchnord/no-ai-bundle/composer.json
+cp ../HomeController.php src/Controller/HomeController.php
+
+cd public
+php -S 127.0.0.1:8000 &
+sleep 2 # Wait a little bit for the server to start
+echo
+
+echo "Testing request with no user agent..."
+http_status=$(curl -v http://127.0.0.1:8000 2>&1 | grep "< HTTP/1.1" | sed -nE 's/.+([0-9]{3}).+/\1/p')
+assert "$http_status" "200"
+echo "Passed!"
+echo
+
+echo "Testing request with ChatGPT user agent..."
+http_status=$(curl -v --header "User-Agent: Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko); compatible; GPTBot/1.1; +https://openai.com/gptbot)" http://127.0.0.1:8000 2>&1 | grep "< HTTP/1.1" | sed -nE 's/.+([0-9]{3}).+/\1/p')
+assert "$http_status" "403"
+echo "Passed!"
+echo
+
+pkill php
+
+echo "Tests passed!"
